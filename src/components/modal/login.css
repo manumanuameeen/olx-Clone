@@ -1,0 +1,58 @@
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 400px;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel .carousel-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+div[data-testid="carousel"] div[data-testid="carousel-indicators"] button[data-active="false"] {
+  background-color: #d1d5db !important;
+}
+
+div[data-testid="carousel"] div[data-testid="carousel-indicators"] button[data-active="true"] {
+  background-color: #5eead4 !important;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.modal-body > div {
+  width: 100%;
+}
+
+.modal-body .flex.items-center.justify-center {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.modal-body p {
+  display: block;
+}
