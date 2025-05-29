@@ -86,8 +86,8 @@ if(image){
                 price,
                 description: trimmedDescription,
                 imageUrl,
-                userId: auth.uid,
-                userName: auth.displayName || 'Anonymous',
+                userId: auth.user?.uid,
+                userName: auth.user?.displayName || 'Anonymous',
                 createdAt: new Date().toISOString(),
             });
 

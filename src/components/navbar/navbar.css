@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #eeeded;
+  background-color: #f3f3f3;
   border-bottom: 1px solid #e0e0e0;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   position: fixed;
@@ -81,7 +81,7 @@
 }
 
 .search-container:focus-within {
-  border-color: #000000;
+  border-color: #23e5db;
 }
 
 .search-input {
@@ -220,3 +220,37 @@
   background-color: #e0e0e0;
 }
 
+.gradient-border-button {
+  padding: 4px; /* Increased from 2px to 4px */
+  border: none;
+  border-radius: 9999px;
+  background: linear-gradient(45deg, #ffce32, #00a49f, #3a77ff);
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.gradient-border-button:hover {
+  transform: scale(1.05);
+}
+
+.button-inner {
+  background-color: white;
+  padding: 6px 20px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.plus-icon {
+  width: 16px;
+  height: 16px;
+  color: black;
+}
+
+.sell-text {
+  color: #0049b7; /* OLX deep blue */
+  font-weight: 600;
+  font-size: 14px;
+}

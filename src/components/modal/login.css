@@ -17,6 +17,7 @@
   position: relative;
   width: 100%;
   height: 100%;
+  color: black;
 }
 
 .carousel .carousel-item {
@@ -25,11 +26,13 @@
   align-items: center;
   justify-content: center;
   height: 100%;
+  color: black;
   width: 100%;
 }
 
 div[data-testid="carousel"] div[data-testid="carousel-indicators"] button[data-active="false"] {
   background-color: #d1d5db !important;
+  color: black;
 }
 
 div[data-testid="carousel"] div[data-testid="carousel-indicators"] button[data-active="true"] {

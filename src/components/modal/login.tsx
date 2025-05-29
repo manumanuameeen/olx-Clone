@@ -12,6 +12,7 @@ import { auth, provider } from '../firebase/firebase';
 interface LoginProps {
   toggleModal: () => void;
   status: boolean;
+  onEmailLoginClick: () => void;
 }
 
 interface CarouselSlide {
@@ -20,44 +21,41 @@ interface CarouselSlide {
   text: string;
 }
 
-const Login: React.FC<LoginProps> = ({ toggleModal, status }) => {
-  const slides: CarouselSlide[] = [
-    {
-      icon: guitarIcon,
-      alt: 'Guitar',
-      text: 'Help us become one of the safest places to buy and sell',
-    },
-    {
-      icon: loveIcon,
-      alt: 'Love',
-      text: 'Close deals from the comfort of your home',
-    },
-    {
-      icon: avatarIcon,
-      alt: 'Avatar',
-      text: 'Keep all your favorites in one place',
-    },
-  ];
+const slides: CarouselSlide[] = [
+  {
+    icon: guitarIcon,
+    alt: 'Guitar',
+    text: 'Help us become one of the safest places to buy and sell',
+  },
+  {
+    icon: loveIcon,
+    alt: 'Love',
+    text: 'Close deals from the comfort of your home',
+  },
+  {
+    icon: avatarIcon,
+    alt: 'Avatar',
+    text: 'Keep all your favorites in one place',
+  },
+];
 
-  const handleClick = async () => {
+const Login: React.FC<LoginProps> = ({
+  toggleModal,
+  status,
+  onEmailLoginClick,
+  
+}) => {
+  const handleGoogleLogin = async () => {
     try {
-      const result = await signInWithPopup(auth, provider);
-      console.log('User logged in:', result.user);
+      await signInWithPopup(auth, provider);
       toggleModal();
     } catch (error: any) {
-      console.error('Login error:', error.message);
       alert(`Failed to log in: ${error.message}`);
     }
   };
 
   return (
     <Modal
-      theme={{
-        content: {
-          base: 'relative w-full p-4 md:h-auto',
-          inner: 'relative flex max-h-[90dvh] flex-col rounded-lg bg-white shadow dark:bg-gray-700',
-        },
-      }}
       show={status}
       onClose={toggleModal}
       className="bg-black/50 rounded-none"
@@ -65,7 +63,7 @@ const Login: React.FC<LoginProps> = ({ toggleModal, status }) => {
       size="md"
       popup
     >
-      <div className="p-6 pl-4 pr-4 bg-white relative">
+      <div className="p-6 pl-4 pr-3 bg-white relative">
         <img
           onClick={toggleModal}
           src={closeIcon}
@@ -74,21 +72,6 @@ const Login: React.FC<LoginProps> = ({ toggleModal, status }) => {
         />
         <Carousel
           slide={false}
-          theme={{
-            indicators: {
-              active: { on: 'bg-teal-400' },
-              base: 'h-2 w-2 rounded-full',
-              wrapper: 'absolute bottom-2 left-1/2 flex -translate-x-1/2 space-x-3',
-            },
-            scrollContainer: {
-              base: 'flex h-full snap-mandatory overflow-y-hidden overflow-x-scroll scroll-smooth',
-              snap: 'snap-x',
-            },
-            control: {
-              base: 'hidden',
-              icon: 'h-8 text-white dark:text-black',
-            },
-          }}
           className="w-full h-52 pb-5 rounded-none"
         >
           {slides.map((slide, index) => (
@@ -108,7 +91,7 @@ const Login: React.FC<LoginProps> = ({ toggleModal, status }) => {
         <div className="p-6 pt-0 flex flex-col items-center justify-between h-full">
           <div className="w-full">
             <div
-              onClick={handleClick}
+              onClick={handleGoogleLogin}
               className="flex items-center justify-center rounded-md border-2 border-solid border-gray-300 p-3 relative h-12 cursor-pointer"
             >
               <img className="h-5 absolute left-4" src={googleIcon} alt="google" />
@@ -116,9 +99,16 @@ const Login: React.FC<LoginProps> = ({ toggleModal, status }) => {
             </div>
             <div className="pt-5 flex flex-col items-center justify-center">
               <p className="font-semibold text-sm text-gray-500">OR</p>
-              <p className="font-bold text-lg pt-4 underline underline-offset-4 text-gray-800 cursor-pointer">
+              <p
+                className="font-bold text-lg pt-4 underline underline-offset-4 text-gray-800 cursor-pointer"
+                onClick={() => {
+                  toggleModal();
+                  onEmailLoginClick();
+                }}
+              >
                 Login with Email
               </p>
+              
             </div>
           </div>
           <div className="flex flex-col items-center justify-center">

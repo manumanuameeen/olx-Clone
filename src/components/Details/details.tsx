@@ -11,6 +11,8 @@ const Details = () => {
     const [opemModal, setModal] = useState<boolean>(false);
     const [openModalSell, setModalSell] = useState<boolean>(false);
     const itemctxt = useItemContext();
+    const [showEmailModal, setShowEmailModal] = useState(false);
+const [showSignUpModal, setShowSignUpModal] = useState(false);
 
     const toggleModal = () => setModal((prev) => !prev);
     const toggleModalSell = () => setModalSell((prev) => !prev);
@@ -22,7 +24,15 @@ const Details = () => {
     return (
         <div className='pt-[5rem]'>
             <Navbar toggelModalSell={toggleModalSell} toggleModal={toggleModal} />
-            <Login toggleModal={toggleModal} status={opemModal} />
+            
+        <Login
+  toggleModal={toggleModal}
+  status={opemModal}
+  onEmailLoginClick={() => setShowEmailModal(true)}
+
+/>
+
+            
             <div className="grid gap-0 sm:gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 p-10 px-5 sm:px-15 md:px-30 lg:px-40">
                 <div className="border-2 w-full rounded-lg flex justify-center overflow-hidden h-96">
                     <img className='object-cover' src={item.imageUrl} alt={item.title} />
@@ -38,7 +48,7 @@ const Details = () => {
                     </div>
                 </div>
             </div>
-            <Sell toggleModalSell={toggleModalSell} status={openModalSell} setItems={itemctxt.setItems}/>
+            <Sell toggleModalSell={toggleModalSell} status={openModalSell} setItems={itemctxt.setItems} />
         </div>
     )
 }
